@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -29,10 +28,10 @@ import java.util.List;
 
 public class MainActivity extends Activity {
     EditText password,userName;
-    Button login,resister, config, logReg;
+    Button login, register, config;
     ProgressBar progressBar;
     TextView user;
-    String ip = "192.168.1.55:8080";
+    String ip = "192.168.137.1:8080";
 
 
 
@@ -44,34 +43,42 @@ public class MainActivity extends Activity {
         userName=(EditText) findViewById(R.id.nombre);
         user=(TextView) findViewById(R.id.user);
         login=(Button) findViewById(R.id.register);
-        resister=(Button) findViewById(R.id.button2);
+        register =(Button) findViewById(R.id.button2);
         config=(Button) findViewById(R.id.button3);
-        logReg=(Button) findViewById(R.id.logReg);
 
+        userName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus)
+                    userName.setHint("");
+                else
+                    userName.setHint("Nombre de usuario");
+            }
+        });
+
+        password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus)
+                    password.setHint("");
+                else
+                    password.setHint("Contraseña");
+            }
+        });
 
         //progess_msz.setVisibility(View.GONE);
         progressBar=(ProgressBar) findViewById(R.id.progressBar1);
         progressBar.setVisibility(View.GONE);
 
 
-        resister.setOnClickListener(new OnClickListener() {
+        register.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub
-                Intent  intent=new Intent(MainActivity.this, ResisterUser.class);
+                Intent  intent=new Intent(MainActivity.this, RegisterUser.class);
                 startActivityForResult(intent, 0);
             }
         });
-        logReg.setOnClickListener(new OnClickListener() {
 
-            @Override
-            public void onClick(View arg0) {
-                // TODO Auto-generated method stub
-                Intent  intent=new Intent(MainActivity.this, ResisterLog.class);
-                startActivityForResult(intent, 0);
-            }
-        });
         config.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -108,12 +115,7 @@ public class MainActivity extends Activity {
             return res;
         }
 
-        @Override
-        protected void onPostExecute(String result) {
-            progressBar.setVisibility(View.GONE);
-            //progess_msz.setVisibility(View.GONE);
-            Toast.makeText(getApplicationContext(), result, 3000).show();
-        }
+
 
     }
 
@@ -146,13 +148,25 @@ public class MainActivity extends Activity {
             is=res.getEntity().getContent();
             BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(is));
             String line="";
+
             StringBuffer sb=new StringBuffer();
             while ((line=bufferedReader.readLine())!=null)
             {
                 sb.append(line);
+                if( !line.equals( "Usuario no Registrado " ) ) {
+                   // Intent mainIntent = new Intent().setClass(MainActivity.this, WifiScan.class);
+                    //startActivity(mainIntent);
+                    Intent intent = new Intent(this, WifiScan.class);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("name", line);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
+
             return_text=sb.toString();
-          
+
         } catch (Exception e)
         {
 

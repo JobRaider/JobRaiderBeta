@@ -12,17 +12,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class WifiCon extends AppCompatActivity{
-    TextView texto;
+    TextView texto, nombre2;
     NetworkInfo.State internet_movil;
     NetworkInfo.State wifi;
     String red = "JobRaider";
+    String nombre = getIntent().getStringExtra("nombre");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wifi_con);
-        texto = (TextView)findViewById(R.id.conexion);
-
+        texto = (TextView)findViewById(R.id.jobStatus);
+        nombre2 = (TextView)findViewById(R.id.wifiStatus);
+        nombre2.setText(nombre);
+        RegisterLog register = new RegisterLog();
         getConnectionService();
     }
 

@@ -22,19 +22,19 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
-public class ResisterUser extends Activity {
+;
+public class RegisterUser extends Activity {
 	EditText userName,passwprd, apellido, dni;
 	Button register;
 	ProgressBar progressBar;
-	String ip = "192.168.1.55:8080";
+ String ipUser = "192.168.1.101:8080";
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_resister_user);
+		setContentView(R.layout.activity_register_user);
 		userName=(EditText) findViewById(R.id.nombre);;
 		passwprd=(EditText) findViewById(R.id.pas);
-		apellido=(EditText) findViewById(R.id.ape);
+
 		dni=(EditText) findViewById(R.id.dni);
 		register=(Button) findViewById(R.id.register);
 
@@ -48,9 +48,9 @@ public class ResisterUser extends Activity {
 
 				String s1=userName.getText().toString();
 				String s2=passwprd.getText().toString();
-				String s3=apellido.getText().toString();
-				String s4=dni.getText().toString();
-				new ExecuteTask().execute(s1,s2,s3,s4);
+
+				String s3=dni.getText().toString();
+				new ExecuteTask().execute(s1,s2,s3);
 			}
 		});
 	}
@@ -72,12 +72,12 @@ public class ResisterUser extends Activity {
 		try {
 			HttpClient httpClient=new DefaultHttpClient();
 			//HttpPost httpPost=new HttpPost("http://" + ip + "/JobRaide-Servlet/httpPostServlet");
-			HttpPost httpPost=new HttpPost("http://" + ip + "/JobRaide-Servlet/httpPostServlet");
+			HttpPost httpPost=new HttpPost("http://" + ipUser + "/JobRaide-Servlet/httpPostServlet");
 			List<NameValuePair> list=new ArrayList<NameValuePair>();
 			list.add(new BasicNameValuePair("name", valuse[0]));
 			list.add(new BasicNameValuePair("pass",valuse[1]));
-			list.add(new BasicNameValuePair("ape",valuse[2]));
-			list.add(new BasicNameValuePair("dni",valuse[3]));
+
+			list.add(new BasicNameValuePair("dni",valuse[2]));
 			httpPost.setEntity(new UrlEncodedFormEntity(list));
 			httpClient.execute(httpPost);
 		}

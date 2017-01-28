@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:background="@drawable/app_background">
+
+    <EditText
+        android:id="@+id/nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:hint="Nombre de usuario"
+        android:ems="20"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="20sp"
+        android:shadowColor="@android:color/background_dark"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:shadowRadius="10"
+        android:textColor="@android:color/background_light"
+        android:textColorHint="@android:color/background_light">
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/pas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/nombre"
+        android:layout_below="@+id/nombre"
+        android:layout_marginTop="67dp"
+        android:ems="20"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="20sp"
+        android:textColorHint="@android:color/background_light"
+        android:textColor="@android:color/background_light"
+        android:shadowColor="@android:color/background_dark"
+        android:shadowDx="10"
+        android:shadowDy="10"
+        android:shadowRadius="10" />
+
+    <TextView
+        android:text="    "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/button2"
+        android:id="@+id/user"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/button3" />
+
+    <Button
+        android:hint="Ajustes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:textSize="20sp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/holo_orange_light"
+        android:textColorHint="@android:color/background_light"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:minHeight="30dp"
+        android:minWidth="150dp" />
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Acceder"
+        android:elevation="0dp"
+        android:textSize="20sp"
+        android:background="@color/colorPrimary"
+        android:textColorHint="@android:color/background_light"
+        android:layout_above="@+id/button2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="13dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:minHeight="40dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/register"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="11dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Nuevo Usuario"
+        android:textSize="20sp"
+        android:background="@color/colorPrimary"
+        android:textColorHint="@android:color/background_light"
+        android:minHeight="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:minWidth="150dp" />
+
+</RelativeLayout>
